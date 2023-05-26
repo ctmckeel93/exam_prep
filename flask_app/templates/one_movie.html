@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Movie Details</h1>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/movies/create">Add a movie to your watch list</a>
+    <a href="/logout">Logout</a>
+    <h2>Movie Title: {{one_movie.title}}</h2>
+    <p>Genre: {{one_movie.genre}}</p>
+    <p>Year: {{one_movie.year}}</p>
+    <p>Description: {{one_movie.description}}</p>
+    {% if user_id == one_movie.user_id %}
+        <a href="/movies/edit/{{one_movie.id}}">Edit</a>
+        <a href="/movies/delete/{{one_movie.id}}">Delete</a>
+    {% endif %}
+</body>
+</html>

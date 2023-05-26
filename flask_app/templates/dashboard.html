@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome {{user.username}}</h1>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/movies/create">Add a movie to your watch list</a>
+    <a href="/logout">Logout</a>
+    <table>
+        <tr>
+            <th>Movie Title</th>
+            <th>Genre</th>
+            <th>Release Year</th>
+            <th>Actions</th>
+        </tr>
+        {% for movie in all_movies: %}
+        <tr>
+            <td><a href="/movies/{{movie.id}}">{{movie.title}}</a></td>
+            <td>{{movie.genre}}</td>
+            <td>{{movie.year}}</td>
+            <td>
+                <a href="/movies/edit/{{movie.id}}">Edit</a>
+                <a href="#">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Your Watch List</h2>
+    <table>
+        <tr>
+            <th>Movie Title</th>
+            <th>Genre</th>
+            <th>Release Year</th>
+            <th>Actions</th>
+        </tr>
+        {% for movie in all_movies: %}
+            {% if user.id == movie.user_id %}
+                <tr>
+                    <td><a href="/movies/{{movie.id}}">{{movie.title}}</a></td>
+                    <td>{{movie.genre}}</td>
+                    <td>{{movie.year}}</td>
+                    <td>
+                        <a href="/movies/edit/{{movie.id}}">Edit</a>
+                        <a href="/movies/delete/{{movie.id}}">Delete</a>
+                    </td>
+                </tr>
+            {%endif%}
+        {% endfor %}
+    </table>
+</body>
+</html>

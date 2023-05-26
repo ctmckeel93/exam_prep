@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Edit a movie</h1>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/movies/create">Add a movie to your watch list</a>
+    <a href="/logout">Logout</a>
+
+    <form action="/movies/update/{{one_movie.id}}" method="POST">
+        {% with messages = get_flashed_messages() %}
+        <!-- declare a variable called messages -->
+        {% if messages %}
+        <!-- check if there are any messages -->
+        {% for message in messages %}
+        <!-- loop through the messages -->
+        <p>{{message}}</p> <!-- display each message in a paragraph tag -->
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <input type="hidden" name="user_id" value="{{one_movie.user_id}}">
+        <div>
+            <label for="title">Movie Title</label>
+            <input name="title" type="text" value="{{one_movie.title}}">
+        </div>
+        <div>
+            <label for="genre">genre</label>
+            <input name="genre" value="{{one_movie.genre}}" type="text">
+        </div>
+        <div>
+            <label for="release_year">release_year</label>
+            <input name="release_year" value="{{one_movie.year}}" type="text">
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <textarea name="description" id="" cols="30" rows="10">{{one_movie.description}}</textarea>
+        </div>
+        <button>Update</button>
+    </form>
+</body>
+
+</html>
